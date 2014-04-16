@@ -2,17 +2,20 @@
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
-                      Title="MainWindow"
-                      Height="507.121"
-                      Width="673.684" Background="White">
+                      Title="Backup Maker - PreAlpha"
+                      Height="480.891"
+                      Width="698.274" Background="White" ResizeMode="NoResize">
     <Grid>
-        <TextBox x:Name="text" HorizontalAlignment="Left" Height="290" Margin="317,86.51,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="338.684"/>
+        <TextBox x:Name="text" HorizontalAlignment="Left" Margin="317,152.354,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Height="162.065" Width="365.274"/>
 
-        <TextBox x:Name="zipDir" HorizontalAlignment="Left" Height="20" Margin="317,25.21,0,0" TextWrapping="Wrap" Text="C:/Users/788732/Desktop/asdf.zip" VerticalAlignment="Top" Width="338.684" TextChanged="TextBox_TextChanged"/>
-        <Button x:Name="startButton" Content="Start" HorizontalAlignment="Left" Margin="580.684,56.21,0,0" VerticalAlignment="Top" Width="75" Click="startButton_Click"/>
-        <ListBox Name="lbTodoList" HorizontalContentAlignment="Stretch" Margin="10,25.21,353.684,130.911">
+        <TextBox x:Name="zipDir" HorizontalAlignment="Left" Margin="317,25.21,0,0" TextWrapping="Wrap" Text="C:/Users/788732/Desktop/asdf.zip" VerticalAlignment="Top" TextChanged="TextBox_TextChanged" Width="365.274"/>
+        <Button x:Name="startButton" Content="Start" HorizontalAlignment="Left" Margin="317,69.325,0,0" VerticalAlignment="Top" Click="startButton_Click" Height="27" Width="52"/>
+        <ListBox Name="lbTodoList" HorizontalContentAlignment="Stretch" Margin="23.296,26.214,396.488,138.472" Width="272.49">
         	<ListBox.Background>
-        		<SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionColorKey}}"/>
+        		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+        			<GradientStop Color="#FF1075A3" Offset="0"/>
+        			<GradientStop Color="#FF72ADC6" Offset="1"/>
+        		</LinearGradientBrush>
         	</ListBox.Background>
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -28,9 +31,9 @@
             </ListBox.ItemTemplate>
 
         </ListBox>
-        <Button x:Name="folderPath" Content="Add" HorizontalAlignment="Left" Margin="10,351.21,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <Button x:Name="removeButton" Content="Remove" HorizontalAlignment="Left" Margin="237,351.21,0,0" VerticalAlignment="Top" Width="75"/>
-        <ProgressBar HorizontalAlignment="Left" Margin="10,395.053,0,0" VerticalAlignment="Top" Width="645.684" Height="36.006" Value="65"/>
+        <Button x:Name="folderPath" Content="Add" HorizontalAlignment="Left" Margin="23.296,351.21,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Button x:Name="removeButton" Content="Remove" HorizontalAlignment="Left" Margin="220.786,351.21,0,0" VerticalAlignment="Top" Width="75"/>
+        <ProgressBar HorizontalAlignment="Left" Margin="10,395.053,0,0" VerticalAlignment="Top" Width="672.274" Height="36.006" Value="65"/>
 
     </Grid>
 </controls:MetroWindow>
