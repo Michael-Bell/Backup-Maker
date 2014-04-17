@@ -26,9 +26,14 @@ namespace WpfApplication1
     {
         string dir2;
         string dir1 = "C:/Users/788732/Desktop/pics";
-        
-   
 
+
+        public string[] dirArray()
+        {
+            string[] dirArray = new string[dirList.Items.Count];
+            dirList.Items.CopyTo(dirArray, 0);
+            return dirArray;
+        }
         public MainWindow()
         {
             InitializeComponent();
@@ -40,11 +45,32 @@ namespace WpfApplication1
 
         private void createZip()
         {
-            if (!System.IO.Directory.Exists(dir1))
-            {
-                text.Text = text.Text + "The directory does not exist!\n";
+            string[] dirArray1 = dirArray();
 
+          
+                ZipFile myZip = new ZipFile();
+
+            
+      
+
+            foreach (string dir in dirArray1)
+            {
+                //listResults = listResults + dir + "\n";
+                if (!System.IO.Directory.Exists(dir))
+                {
+                    text.Text = text.Text + "The directory does not exist!\n";
+
+                }
+                else
+                {
+          
+
+                        myZip.AddDirectory(dir); // recurses subdirectories
+
+        
+                }
             }
+            
             if (System.IO.File.Exists(dir2))
             {
                 text.Text = text.Text + "That zipfile already exists!\n";
@@ -58,15 +84,12 @@ namespace WpfApplication1
             }
 
             string ZipFileToCreate = dir2;
-            string DirectoryToZip = dir1;
+
             try
             {
-                using (ZipFile zip = new ZipFile())
-                {
-                    zip.StatusMessageTextWriter = System.Console.Out;
-                    zip.AddDirectory(DirectoryToZip); // recurses subdirectories
-                    zip.Save(ZipFileToCreate);
-                }
+
+                    myZip.Save(ZipFileToCreate);
+                
             }
             catch (System.Exception ex1)
             {
@@ -79,21 +102,17 @@ namespace WpfApplication1
             dir2 = zipDir.Text;
             text.Text = dir2;
         }
+        
 
         private void startButton_Click(object sender, RoutedEventArgs e)
         {
 
-            string[] dirArray = new string[dirList.Items.Count];
-            dirList.Items.CopyTo(dirArray, 0);
-
+        
             String listResults = "";
-            foreach (string dir in dirArray)
-            {
-                listResults = listResults + dir + "\n";
-            }
+
             text.Text = listResults;
 
-        //  createZip();
+          createZip();
           
         }
 
