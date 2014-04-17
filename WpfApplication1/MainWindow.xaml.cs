@@ -26,22 +26,20 @@ namespace WpfApplication1
     {
         string dir2;
         string dir1 = "C:/Users/788732/Desktop/pics";
-        List<TodoItem> items = new List<TodoItem>();
+        
+   
+
         public MainWindow()
         {
             InitializeComponent();
 
 
 
-            lbTodoList.ItemsSource = items;
-
             //createZip();
         }
 
         private void createZip()
         {
-            // dir1 = "C:/Users/788732/Desktop/pics";
-            // dir2 = "C:/Users/788732/Desktop/asdf.zip";
             if (!System.IO.Directory.Exists(dir1))
             {
                 text.Text = text.Text + "The directory does not exist!\n";
@@ -54,7 +52,8 @@ namespace WpfApplication1
             }
             if (!dir2.EndsWith(".zip"))
             {
-                text.Text = text.Text + "The filename must end with .zip!\n";
+                zipDir.Text = dir2 + ".zip";
+                text.Text = "The filename must end with .zip!\nAppending .zip!\nLocation: '" + dir2 + "'";
 
             }
 
@@ -83,22 +82,35 @@ namespace WpfApplication1
 
         private void startButton_Click(object sender, RoutedEventArgs e)
         {
-            createZip();
+
+            string[] dirArray = new string[dirList.Items.Count];
+            dirList.Items.CopyTo(dirArray, 0);
+
+            String listResults = "";
+            foreach (string dir in dirArray)
+            {
+                listResults = listResults + dir + "\n";
+            }
+            text.Text = listResults;
+
+        //  createZip();
+          
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             DialogResult result = fbd.ShowDialog();
-            System.Windows.Forms.MessageBox.Show(fbd.SelectedPath, "Message");
-            items.Add(new TodoItem() { Title = fbd.SelectedPath });
+
             dir1 = fbd.SelectedPath;
-            lbTodoList.ItemsSource = items;
+            dirList.Items.Add(dir1);
+        }
+
+        private void removeButton_Click(object sender, RoutedEventArgs e)
+        {
+            dirList.Items.RemoveAt(dirList.Items.IndexOf(dirList.SelectedItem));
+            
         }
     }
-    public class TodoItem
-    {
-        public string Title { get; set; }
-        public int Completion { get; set; }
-    }
+
 }
